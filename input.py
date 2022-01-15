@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import base64
-import algos
+import fcfs
+import sjf
 
 algorithms=["FCFS - First come first serve","SJF - Shortest Job First", "SRTF - Shortest Remaining Time First"]
 
@@ -40,7 +41,15 @@ def input_form():
         bt_list=list(map(int,bt.split(" ")))
         st.header('Result : ')
         if algo=="FCFS - First come first serve":
-            result,wt,tat,ct=algos.fcfs(at_list,bt_list,len(at_list))
+            result,wt,tat,ct=fcfs.fcfs(at_list,bt_list,len(at_list))
+            df=pd.DataFrame(result,columns=["AT","BT","CT","WT","TAT"],index=[i for i in range(1,len(at_list)+1)])
+            st.table(df)
+            col1,col2=st.columns(2)
+            col1.success("Average Waiting Time = "+str(wt)+" / " +str(len(at_list))+" = "+str(round(wt/len(at_list),4)))
+            col2.info("Average TurnAround Time = "+str(tat)+" / " +str(len(at_list))+" = "+str(round(tat/len(at_list),4)))
+
+        elif algo=="SJF - Shortest Job First":
+            result,wt,tat,ct=sjf.sjf(at_list,bt_list,len(at_list))
             df=pd.DataFrame(result,columns=["AT","BT","CT","WT","TAT"],index=[i for i in range(1,len(at_list)+1)])
             st.table(df)
             col1,col2=st.columns(2)
