@@ -3,9 +3,9 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import base64
-import fcfs
-import sjf
-import srtf
+import algos.fcfs as fcfs
+import algos.sjf as sjf
+import algos.srtf as srtf
 
 algorithms=["FCFS - First come first serve","SJF - Shortest Job First", "SRTF - Shortest Remaining Time First"]
 
@@ -30,7 +30,7 @@ def input_form():
         st.warning("Number of arrival times and burst times do not match")
 
     elif res==False:
-        file_ = open("maths.gif", "rb")
+        file_ = open("./assets/maths.gif", "rb")
         contents = file_.read()
         data_url = base64.b64encode(contents).decode("utf-8")
         file_.close()
