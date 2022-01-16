@@ -2,25 +2,28 @@ def findWaitingTime(at, bt,n, wt):
     completed = [0] * n
     time=0
     count=0
-    
+    mini=0
+    minm=999999
     while count!=n:
+        minm=999999
         flag=0
-        mini=9999999999
         for i in range(n):
-            if at[i]<=time and completed[i]==0 and bt[i]<mini:
+            if at[i]<=time and completed[i]==0 and bt[i]<minm:
+                minm=bt[i]
                 mini=i
                 flag=1
-        if flag:
-            wt[mini]=time-at[i]
-            if wt[mini]<0:
-                wt[mini]=0
-            time+=bt[mini]
-            completed[mini]=1
-            count+=1
-
-        else:
+        if flag==0:
             time+=1
- 
+            continue
+
+        wt[mini]=time-at[mini]
+        if wt[mini]<0:
+            wt[mini]=0
+        time+=bt[mini]
+        completed[mini]=1
+        count+=1
+
+
 def findTurnAroundTime(at,bt, n, wt, tat):
     for i in range(n):
         tat[i] = bt[i] + wt[i]
@@ -50,3 +53,4 @@ def sjf(at,bt,n):
     return result,total_wt,total_tat,compl_time
 
 
+sjf([1,2,3],[6,8,7],3)

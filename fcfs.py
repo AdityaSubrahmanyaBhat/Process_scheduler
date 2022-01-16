@@ -1,14 +1,27 @@
 def fcfsWT(at, n, bt, wt):
-    service_time = [0] * n
-    service_time[0] = 0
-    wt[0] = 0
- 
-    for i in range(1, n):
-        service_time[i] = (service_time[i - 1] +bt[i - 1])
-
-        wt[i] = service_time[i] - at[i]
-        if (wt[i] < 0):
-            wt[i] = 0
+    cur_time=0
+    count=0
+    minm=999999
+    mini=0
+    flag=0
+    completed=[0]*n
+    while count!=n:
+        for i in range(n):
+            if at[i]<=cur_time and completed[i]==0 and at[i]<minm:
+                minm=at[i]
+                mini=i
+                flag=1
+    
+        if flag==0:
+            cur_time+=1
+            continue
+            
+        wt[mini]=cur_time-at[mini]
+        cur_time+=bt[mini]
+        completed[mini]=1
+        count+=1
+        flag=0
+        minm=999999
 
 def fcfsTAT( n,bt, wt, tat):
     for i in range(n):
