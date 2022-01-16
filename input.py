@@ -10,6 +10,7 @@ import srtf
 algorithms=["FCFS - First come first serve","SJF - Shortest Job First", "SRTF - Shortest Remaining Time First"]
 
 def input_form():
+    st.markdown(f'<h1 style="text-align:center; padding:20px">{"Process Scheduling Visualiser"}</h1>',unsafe_allow_html=True)
     with st.form('input form'):
         algo=st.selectbox('Select Algorithm',algorithms)
         at=st.text_input('Arrival Time')
