@@ -17,9 +17,6 @@ def input_form():
         bt=st.text_input('Burst Time')
         res=st.form_submit_button('Calculate')
 
-    at_list=list(map(int,at.split(" ")))
-    bt_list=list(map(int,bt.split(" ")))
-
     if at==''and  res:
         st.error("Input cannot be empty")
 
@@ -28,8 +25,8 @@ def input_form():
     
     elif bt.split(" ").count('0')>0 and res:
         st.warning("Burst time cannot be zero")
-
-    elif len(bt_list)!=len(at_list) and res:
+    
+    elif at!='' and bt!='' and len(list(map(int,at.split(" "))))!=len(list(map(int,bt.split(" ")))) and res==True:
         st.warning("Number of arrival times and burst times do not match")
 
     elif res==False:
@@ -42,8 +39,8 @@ def input_form():
             f'<img src="data:image/gif;base64,{data_url}" alt="">',unsafe_allow_html=True,)
 
     elif at!='' and bt!='' and res:
-        # at_list=list(map(int,at.split(" ")))
-        # bt_list=list(map(int,bt.split(" ")))
+        at_list=list(map(int,at.split(" ")))
+        bt_list=list(map(int,bt.split(" ")))
         # st.header('Result : ')
         st.markdown(f'<h1 style="color:green;font-weight:normal">{algo.split(" ")[0]}</h1>',unsafe_allow_html=True)
         if algo=="FCFS - First come first serve":
