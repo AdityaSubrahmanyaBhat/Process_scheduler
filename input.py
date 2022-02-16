@@ -17,8 +17,8 @@ def input_form():
         bt=st.text_input('Burst Time')
         res=st.form_submit_button('Calculate')
 
-        at_list=list(map(int,at.split(" ")))
-        bt_list=list(map(int,bt.split(" ")))
+    at_list=list(map(int,at.split(" ")))
+    bt_list=list(map(int,bt.split(" ")))
 
     if at==''and  res:
         st.error("Input cannot be empty")
